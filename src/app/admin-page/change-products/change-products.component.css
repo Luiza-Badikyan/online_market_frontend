@@ -1,0 +1,25 @@
+.container {
+  text-align: center;
+}
+input {
+  margin: 18px;
+}
+.card {
+  padding: 38px;
+  background-color: rgba(160, 196, 208, 0);
+  border: 0px;
+}
+.card .card-header {
+  border-bottom: 1px solid powderblue;
+}
+.card .card-footer {
+  border-top: 1px solid powderblue;
+}
+.card-text {
+  color: whitesmoke;
+}
+button {
+  padding: 3px 18px;
+  color: maroon;
+  font-weight: 700;
+}

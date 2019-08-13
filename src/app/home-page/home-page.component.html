@@ -1,0 +1,36 @@
+<!--<div class="container">-->
+  <!--<div class="row" style="padding: 18px">-->
+      <!--<div class="col-md-4 card mb-3" *ngFor="let item of products" style="text-align: center">-->
+        <!--<div class="card-header">-->
+          <!--<img src="{{item.image}}" alt="" class="img-fluid" style="height: 180px;">-->
+        <!--</div>-->
+        <!--<div class="card-body text-info">-->
+          <!--<h5 class="card-title">{{item.title}}</h5>-->
+          <!--<p class="card-text">{{item.description}}</p>-->
+        <!--</div>-->
+        <!--<div class="card-footer text-info">-->
+          <!--<button type="button" class="btn btn-info"><i class="fas fa-cart-plus"></i></button>-->
+        <!--</div>-->
+      <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
+<mat-grid-list cols="3" rowHeight="1:1" gutterSize="0">
+  <mat-grid-tile *ngFor="let item of products" style="text-align: center">
+
+    <mat-card class="example-card">
+      <img mat-card-image src="{{item.image}}" matCardImageLarge="">
+      <mat-card-content>
+        <mat-card-title>{{item.title}}</mat-card-title>
+        <hr>
+        <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-footer>
+        <button mat-button><i class="fas fa-cart-plus"></i></button>
+      </mat-card-footer>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>

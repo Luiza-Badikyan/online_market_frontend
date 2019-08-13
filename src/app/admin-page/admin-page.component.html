@@ -1,0 +1,23 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <form [formGroup]="loginForm">
+        <input type="text" placeholder="email" formControlName="email" class="form-control">
+        <input type="password" placeholder="password" formControlName="password" class="form-control">
+        <button class="btn btn-info" (click)="login()">Login</button>
+        <button class="btn btn-info" (click)="logout()">Logout</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--<ul *ngFor="let item of users">-->
+  <!--<li>{{item.firstName}}</li>-->
+<!--</ul>-->
+
+<router-outlet></router-outlet>
+
+
+

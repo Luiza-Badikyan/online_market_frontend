@@ -1,0 +1,10 @@
+.container {
+  text-align: center;
+}
+.row {
+  padding: 38px;
+}
+.col {
+  background-color: aliceblue;
+  margin: 38px 3px;
+}

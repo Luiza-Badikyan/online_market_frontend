@@ -1,0 +1,62 @@
+
+/*.card {*/
+  /*padding: 38px;*/
+  /*background-color: rgba(160, 196, 208, 0);*/
+  /*border: 0px;*/
+/*}*/
+/*.card .card-header {*/
+  /*border-bottom: 1px solid powderblue;*/
+/*}*/
+/*.card .card-footer {*/
+  /*border-top: 1px solid powderblue;*/
+/*}*/
+/*.card-text {*/
+  /*color: whitesmoke;*/
+/*}*/
+/*button {*/
+  /*padding: 3px 18px;*/
+  /*color: maroon;*/
+/*}*/
+
+
+/*.card {*/
+  /*text-align: center;*/
+  /*background-color: rgba(9, 29, 71, 0);*/
+  /*color: #a0c4d0;*/
+  /*border: 1px solid darkred;*/
+  /*width: 80%;*/
+/*}*/
+/*.image {*/
+  /*height: 80px;*/
+/*}*/
+
+.example-card {
+  /*width: 80%;*/
+  /*padding: 3%;*/
+  /*margin: 18px 0px;*/
+  background-color: rgba(160, 196, 208, 0);
+  color: #a0c4d0;
+  width: 380px;
+}
+.mat-card-subtitle {
+  color: whitesmoke;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 3px 3px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+button {
+  border: 2px solid #520000;
+  margin-bottom: 8px;
+  font-size: 18px;
+  border-radius: 18px;
+}
+button:hover {
+  background-color: whitesmoke;
+  border: 2px solid #a0c4d0;
+}
+hr {
+  width: 88%;
+  height: 1px;
+  background-color: lavender;
+  margin-bottom: 21px;
+}

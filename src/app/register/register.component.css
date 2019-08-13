@@ -1,0 +1,16 @@
+
+form {
+  padding: 3%;
+  text-align: center;
+}
+form input {
+  margin: 3%;
+  background-color: rgba(240, 255, 255, 0.04);
+  color: white;
+  border: 1px solid paleturquoise;
+  border-radius: 8px;
+}
+button {
+  background-color: #520000;
+  border: 1px solid powderblue;
+}
