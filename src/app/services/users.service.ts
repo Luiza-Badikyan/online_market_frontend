@@ -35,8 +35,19 @@ export class UsersService {
     localStorage.setItem('id_token', token);
     this.authToken = token;
     const tokenDecoded = jwtdecode(token);
-    const {email, userId} = tokenDecoded;
-    this.user = {email, userId};
+    const {email, userId, role} = tokenDecoded;
+    this.user = {email, userId, role};
+    localStorage.setItem('role', this.user.role);
+  }
+
+  getUser() {
+    const idToken = localStorage.getItem('id_token');
+    if(!idToken) return false;
+
+    const token = idToken.split(' ')[1];
+    const tokenDecoded = jwtdecode(token);
+    const {email, userId, role} = tokenDecoded;
+    return {email, userId, role};
   }
 
   // loadToken() {

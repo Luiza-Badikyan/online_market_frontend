@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+
   }
 
   logout() {

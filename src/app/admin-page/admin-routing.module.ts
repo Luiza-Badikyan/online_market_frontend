@@ -4,10 +4,13 @@ import {AdminPageComponent} from "./admin-page.component";
 import {ChangeProductsComponent} from "./change-products/change-products.component";
 import {AuthGuard} from "../services/auth.guard";
 
+import Roles from './../constants/roles';
+import {AuthLoadGuardGuard} from "../services/auth-load-guard.guard";
+const adminRoles = {roles: [Roles.ADMIN.name]};
 
 const AdminRoutes: Routes = [
-  {path: '', component: AdminPageComponent, children: [
-      {path: 'change', canActivate: [AuthGuard], component: ChangeProductsComponent}
+  {path: '', canActivate: [AuthLoadGuardGuard], data: adminRoles, component: AdminPageComponent, children: [
+      {path: 'change', component: ChangeProductsComponent}
     ]}
 ];
 

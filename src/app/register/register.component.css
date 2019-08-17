@@ -1,16 +1,46 @@
 
-form {
-  padding: 3%;
+/*form {*/
+  /*padding: 3%;*/
+  /*text-align: center;*/
+/*}*/
+/*form input {*/
+  /*margin: 3%;*/
+  /*background-color: rgba(240, 255, 255, 0.04);*/
+  /*color: white;*/
+  /*border: 1px solid paleturquoise;*/
+  /*border-radius: 8px;*/
+/*}*/
+
+div {
   text-align: center;
+  padding: 3% 18%;
 }
-form input {
-  margin: 3%;
-  background-color: rgba(240, 255, 255, 0.04);
-  color: white;
-  border: 1px solid paleturquoise;
-  border-radius: 8px;
+form {
+  /*width: 58%;*/
+  border: 3px solid rgba(143, 143, 143, 0.92);
+  border-radius: 38px;
+}
+h3 {
+  margin: 18px auto;
+  color: #520000;
+}
+mat-form-field {
+  width: 58%;
+}
+mat-label {
+  color: rgba(110, 0, 0, 0.92);
+}
+mat-label:hover {
+  color: rgba(161, 31, 0, 0.83);
+}
+i {
+  text-decoration: none;
+  font-size: 18px;
+  color: rgba(4,88,93,0.73)
 }
 button {
   background-color: #520000;
-  border: 1px solid powderblue;
+  color: whitesmoke;
+  border: 1px solid #f5f5f5;
+  margin-bottom: 18px;
 }

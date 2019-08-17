@@ -15,8 +15,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatCardModule, MatToolbarModule} from '@angular/material';
-import { MatGridListModule } from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule, MatInputModule} from '@angular/material';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -33,13 +39,19 @@ import { MatGridListModule } from '@angular/material';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
     MatGridListModule,
     MatToolbarModule,
-    ToastrModule.forRoot()
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

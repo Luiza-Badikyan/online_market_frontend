@@ -1,25 +1,103 @@
-.container {
+/*.container {*/
+  /*text-align: center;*/
+/*}*/
+/*input {*/
+  /*margin: 18px;*/
+/*}*/
+/*.card {*/
+  /*padding: 38px;*/
+  /*background-color: rgba(160, 196, 208, 0);*/
+  /*border: 0px;*/
+/*}*/
+/*.card .card-header {*/
+  /*border-bottom: 1px solid powderblue;*/
+/*}*/
+/*.card .card-footer {*/
+  /*border-top: 1px solid powderblue;*/
+/*}*/
+/*.card-text {*/
+  /*color: whitesmoke;*/
+/*}*/
+/*button {*/
+  /*padding: 3px 18px;*/
+  /*color: maroon;*/
+  /*font-weight: 700;*/
+/*}*/
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+form {
   text-align: center;
+  padding: 3px;
+  margin-top: 18px;
 }
-input {
-  margin: 18px;
-}
-.card {
-  padding: 38px;
+.example-card {
+  /*width: 80%;*/
+  /*padding: 3%;*/
+  /*margin: 18px 0px;*/
   background-color: rgba(160, 196, 208, 0);
-  border: 0px;
+  color: teal;
+  width: 380px;
 }
-.card .card-header {
-  border-bottom: 1px solid powderblue;
+.mat-card-subtitle {
+  color: #6d6d6d;
 }
-.card .card-footer {
-  border-top: 1px solid powderblue;
-}
-.card-text {
-  color: whitesmoke;
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 3px 3px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 button {
-  padding: 3px 18px;
-  color: maroon;
-  font-weight: 700;
+  border: 2px solid #520000;
+  margin: 3px 8px;
+  font-size: 18px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #005e5e;
+}
+button:hover {
+  background-color: whitesmoke;
+  border: 2px solid teal;
+  color: #520000;
+}
+.delete {
+  border: 0px;
+  color: #576163;
+}
+.delete:hover {
+  border: 0px;
+  color: darkred;
+}
+.change {
+  border: 0px;
+  color: #556f4a;
+}
+.change:hover {
+  border: 0px;
+  color: #90ee90;
+}
+.modal button {
+  background-color: rgba(245, 245, 245, 0);
+  border: 1px solid #576163;
+  color: #556f4a;
+}
+#close {
+  border: 0px solid rgba(87, 97, 99, 0);
+}
+.modal form input, .modal form select {
+  border-radius: 8px;
+  margin: 8px 0px;
+  border-top: 0px solid #520000;
+  border-right: 0px solid #520000;
+  border-bottom: 2px solid #520000;
+  border-left: 0px solid #520000;
+}
+#modalClose:hover {
+  color: rgba(126, 0, 0, 0.86);
+}
+#modalChange:hover {
+  color: rgba(170, 214, 180, 0.91);
 }

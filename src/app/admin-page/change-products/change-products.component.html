@@ -1,45 +1,132 @@
 
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <form [formGroup]="form">
-        <input type="text" placeholder="title" formControlName="title">
-        <input type="text" placeholder="slug" formControlName="slug">
-        <input type="text" placeholder="image" formControlName="image">
-        <input type="text" placeholder="description" formControlName="description">
-        <!--<div class="input-group"  style="display: inline-block; width: 13%">-->
-        <select class="custom-select" style="display: inline-block; width: 13%" formControlName="category">
-          <option *ngFor="let item of categories" value="{{item._id}}">{{item.title}}</option>
-        </select>
-        <button type="submit" class="btn btn-info" (click)="add()">Add</button>
-      </form>
+<!--<div class="container">-->
+  <!--<div class="row">-->
+    <!--<div class="col">-->
+      <!--<form [formGroup]="form">-->
+        <!--<input type="text" placeholder="title" formControlName="title">-->
+        <!--<input type="text" placeholder="slug" formControlName="slug">-->
+        <!--<input type="text" placeholder="image" formControlName="image">-->
+        <!--<input type="text" placeholder="description" formControlName="description">-->
+        <!--&lt;!&ndash;<div class="input-group"  style="display: inline-block; width: 13%">&ndash;&gt;-->
+        <!--<select class="custom-select" style="display: inline-block; width: 13%" formControlName="category">-->
+          <!--<option *ngFor="let item of categories" value="{{item._id}}">{{item.title}}</option>-->
+        <!--</select>-->
+        <!--<button type="submit" class="btn btn-info" (click)="add()">Add</button>-->
+      <!--</form>-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="container">-->
+  <!--<div class="row" style="padding: 18px">-->
+    <!--&lt;!&ndash;<div class="col-md-4">&ndash;&gt;-->
+    <!--<div class="col-md-4 card mb-3" *ngFor="let item of products" style="text-align: center">-->
+      <!--<div class="card-header">-->
+        <!--<img src="{{item.image}}" alt="" class="img-fluid" style="height: 180px;">-->
       <!--</div>-->
-    </div>
-  </div>
-</div>
+      <!--<div class="card-body text-info">-->
+        <!--<h5 class="card-title">{{item.title}}</h5>-->
+        <!--<p class="card-text">{{item.description}}</p>-->
+      <!--</div>-->
+      <!--<div class="footer">-->
+        <!--<button type="button" class="btn btn-info" (click)="delete(item)">Delete</button>-->
+        <!--&lt;!&ndash;<button class="btn btn-info" (click)="a(item)">Change</button> &lt;!&ndash;[routerLink]="['/change', item.title]"&ndash;&gt;&ndash;&gt;-->
+
+        <!--&lt;!&ndash; modals &ndash;&gt;-->
 
 
-<div class="container">
-  <div class="row" style="padding: 18px">
-    <!--<div class="col-md-4">-->
-    <div class="col-md-4 card mb-3" *ngFor="let item of products" style="text-align: center">
-      <div class="card-header">
-        <img src="{{item.image}}" alt="" class="img-fluid" style="height: 180px;">
-      </div>
-      <div class="card-body text-info">
-        <h5 class="card-title">{{item.title}}</h5>
-        <p class="card-text">{{item.description}}</p>
-      </div>
-      <div class="footer">
-        <button type="button" class="btn btn-info" (click)="delete(item)">Delete</button>
-        <!--<button class="btn btn-info" (click)="a(item)">Change</button> &lt;!&ndash;[routerLink]="['/change', item.title]"&ndash;&gt;-->
+        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+        <!--<button type="button" class="btn btn-info" data-toggle="modal" (click)="loadProduct(item)" attr.data-target="#exampleModalCenter{{item.title}}">Change</button>-->
+
+        <!--&lt;!&ndash; Modal &ndash;&gt;-->
+        <!--<div class="modal fade" id="exampleModalCenter{{item.title}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+          <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+            <!--<div class="modal-content">-->
+              <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title" id="exampleModalLongTitle">{{item.title}}</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                  <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+              <!--</div>-->
+              <!--<div class="modal-body">-->
+                <!--<form  [formGroup]="change">-->
+                  <!--&lt;!&ndash;{{item.description}}&ndash;&gt;-->
+                  <!--<input type="text" style="width: 88%" formControlName="title">-->
+                  <!--<input type="text" style="width: 88%" formControlName="slug">-->
+                  <!--<input type="text" style="width: 88%" formControlName="image">-->
+                  <!--<input type="text" style="width: 88%" formControlName="description">-->
+                  <!--<select class="custom-select" style="display: inline-block; width: 88%" formControlName="category">-->
+                    <!--<option *ngFor="let item of categories" value="{{item._id}}" selected>{{item.title}}</option>-->
+                  <!--</select>-->
+                <!--</form>-->
+              <!--</div>-->
+              <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <!--<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveChanges(item)">Save changes</button>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+
+
+
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
+
+
+
+    <form class="example-form" [formGroup]="form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="title" formControlName="title">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="slug" formControlName="slug">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="image" formControlName="image">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="description" formControlName="description">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="categories">
+          <mat-option *ngFor="let item of categories" value="{{item._id}}">{{item.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="add()">Add</button>
+    </form>
+
+
+
+<mat-grid-list cols="3" rowHeight="1:1" gutterSize="8px">
+  <mat-grid-tile *ngFor="let item of products" style="text-align: center">
+
+    <mat-card class="example-card">
+      <mat-card-title>
+        <img mat-card-image src="{{item.image}}" mat-card-lg-image="">
+      </mat-card-title>
+      <mat-card-content>
+        <mat-card-title>{{item.title}}</mat-card-title>
+        <hr>
+        <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-footer>
+        <button type="button" class="btn btn-info delete" (click)="delete(item)"><i class="fas fa-trash-alt"></i></button>
 
         <!-- modals -->
 
-
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-info" data-toggle="modal" (click)="loadProduct(item)" attr.data-target="#exampleModalCenter{{item.title}}">Change</button>
+        <button type="button" class="btn btn-info change" data-toggle="modal" (click)="loadProduct(item)" attr.data-target="#exampleModalCenter{{item.title}}"><i class="fas fa-pencil-alt"></i></button>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter{{item.title}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -47,38 +134,35 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <form  [formGroup]="change">
-                  <!--{{item.description}}-->
                   <input type="text" style="width: 88%" formControlName="title">
                   <input type="text" style="width: 88%" formControlName="slug">
                   <input type="text" style="width: 88%" formControlName="image">
                   <input type="text" style="width: 88%" formControlName="description">
                   <select class="custom-select" style="display: inline-block; width: 88%" formControlName="category">
-                    <option *ngFor="let item of categories" value="{{item._id}}" selected>{{item.title}}</option>
+                    <option *ngFor="let item of categories" value="{{item._id}}" selected="{{item.name}}">{{item.title}}</option>
                   </select>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveChanges(item)">Save changes</button>
+                <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="modalChange" data-dismiss="modal" (click)="saveChanges(item)">Save changes</button>
               </div>
             </div>
           </div>
         </div>
+      </mat-card-footer>
+    </mat-card>
 
 
 
-
-      </div>
-    </div>
-    <!--</div>-->
-  </div>
-</div>
+  </mat-grid-tile>
+</mat-grid-list>
 
 
 

@@ -2,22 +2,114 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-6 offset-3">
-      <form [formGroup]="loginForm">
-        <input type="text" placeholder="email" formControlName="email" class="form-control">
-        <input type="password" placeholder="password" formControlName="password" class="form-control">
-        <button class="btn btn-info" (click)="login()">Login</button>
-        <button class="btn btn-info" (click)="logout()">Logout</button>
+    <div class="col">
+      <form [formGroup]="form" enctype="multipart/form-data">
+        <input type="text" placeholder="title" formControlName="title">
+        <input type="text" placeholder="slug" formControlName="slug">
+        <input type="file" name="single" (change)="handleFileInput($event)"  placeholder="image" >
+        <input type="text" placeholder="description" formControlName="description">
+        <!--<div class="input-group"  style="display: inline-block; width: 13%">-->
+        <select class="custom-select" style="display: inline-block; width: 13%" formControlName="category">
+          <option *ngFor="let item of categories" value="{{item._id}}" selected>{{item.title}}</option>
+        </select>
+        <button type="submit" class="btn btn-info" (click)="add()">Add</button>
       </form>
+    </div>
+  </div>
+  <button *ngIf="!flag" mat-stroked-button (click)="logout()" id="logout" style="border: 1px solid whitesmoke">Logout</button>
+</div>
+
+
+<div fxLayout="row" class="all">
+  <div fxFlex.gt-sm="100%">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="32px"
+      fxLayoutAlign="center"
+    >
+      <mat-card class="example-card" *ngFor="let item of products">
+        <img
+          mat-card-image
+          src="{{item.image}}"
+          alt="Image of a product"
+        />
+        <mat-card-content>
+          <h5>
+            {{item.title}}
+          </h5>
+          <p>{{item.description}}</p>
+        </mat-card-content>
+        <hr>
+        <mat-card-actions>
+
+
+          <!-- modal for delete -->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info delete" data-toggle="modal" attr.data-target="#modal{{item.title}}">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal{{item.title}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <p>Are you sure that you want to delete this product?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="delete(item)">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- modal for change -->
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info change" data-toggle="modal" (click)="loadProduct(item)" attr.data-target="#exampleModalCenter{{item.title}}"><i class="fas fa-pencil-alt"></i></button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalCenter{{item.title}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}}</h5>
+                  <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form  [formGroup]="change">
+                    <input type="text" style="width: 88%" formControlName="title">
+                    <input type="text" style="width: 88%" formControlName="slug">
+                    <input type="text" style="width: 88%" formControlName="image">
+                    <input type="text" style="width: 88%" formControlName="description">
+                    <select class="custom-select" style="display: inline-block; width: 88%" formControlName="category">
+                      <option *ngFor="let item of categories" value="{{item._id}}" selected="{{item.name}}">{{item.title}}</option>
+                    </select>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="modalClose" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="modalChange" data-dismiss="modal" (click)="saveChanges(item)">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>
 
-<!--<ul *ngFor="let item of users">-->
-  <!--<li>{{item.firstName}}</li>-->
-<!--</ul>-->
+
+
+
+
 
 <router-outlet></router-outlet>
-
-
 

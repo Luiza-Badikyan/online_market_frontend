@@ -5,14 +5,24 @@ import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuard} from "./services/auth.guard";
+import Roles from "./constants/roles";
+import {AuthLoadGuardGuard} from "./services/auth-load-guard.guard";
+
+const adminRoles = {roles: [Roles.ADMIN.name]};
+const userRoles = {roles: [Roles.USER.name]};
 
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'profile', /*canActivate: [AuthGuard],*/ component: ProfileComponent},
-  {path: 'admin', loadChildren: () => import(`./admin-page/admin.module`).then(m => m.AdminModule) },
+  {path: 'profile', canActivate: [AuthGuard], component: ProfileComponent, data: userRoles},
+  {path: 'admin',
+    canLoad: [AuthLoadGuardGuard],
+    data: adminRoles,
+    loadChildren: './admin-page/admin.module#AdminModule'
+    // loadChildren: () => import(`./admin-page/admin.module`).then(m => m.AdminModule)
+  },
   {path: '**', redirectTo: '/'}
 ];
 

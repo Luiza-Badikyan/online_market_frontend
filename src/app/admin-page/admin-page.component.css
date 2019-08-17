@@ -1,8 +1,110 @@
-button {
-  padding: 3px 18px;
-  color: maroon;
-  font-weight: 700;
+#logout {
+  position: fixed;
+  right: 0px;
+  top: 8px;
+  background-color: whitesmoke;
+  color: darkolivegreen;
+  border: 1px solid whitesmoke;
+  z-index: 8;
 }
+
 .container {
   text-align: center;
+  margin-top: 18px;
 }
+
+.container input {
+  background-color: rgba(245, 245, 245, 0);
+  border: 0px solid maroon;
+  border-bottom: 2px solid maroon;
+  margin: 3px;
+  padding-bottom: 3px;
+  border-radius: 3px;
+  height: 28px;
+}
+
+.container select {
+  background-color: rgba(245, 245, 245, 0);
+  border: 0px solid maroon;
+  border-bottom: 2px solid maroon;
+  margin: 3px;
+}
+button {
+  border: 2px solid #520000;
+  margin: 3px 8px;
+  font-size: 18px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #005e5e;
+}
+button:hover {
+  background-color: whitesmoke;
+  border: 2px solid teal;
+  color: #520000;
+}
+.delete {
+  border: 0px;
+  color: #576163;
+}
+.delete:hover {
+  border: 0px;
+  color: darkred;
+}
+.change {
+  border: 0px;
+  color: #556f4a;
+}
+.change:hover {
+  border: 0px;
+  color: #90ee90;
+}
+.modal button {
+  background-color: rgba(245, 245, 245, 0);
+  border: 1px solid #576163;
+  color: #556f4a;
+}
+#close {
+  border: 0px solid rgba(87, 97, 99, 0);
+}
+.modal form input, .modal form select {
+  border-radius: 8px;
+  margin: 8px 0px;
+  border-top: 0px solid #520000;
+  border-right: 0px solid #520000;
+  border-bottom: 2px solid #520000;
+  border-left: 0px solid #520000;
+}
+#modalClose:hover {
+  color: rgba(126, 0, 0, 0.86);
+}
+#modalChange:hover {
+  color: rgba(170, 214, 180, 0.91);
+}
+
+
+.all {
+  margin-top: 18px ;
+}
+hr {
+  width: 88%;
+  height: 1px;
+  background-color: lavender;
+}
+.mat-card {
+  padding: 1.5%;
+  margin: 1%;
+  text-align: center;
+  background-color: rgba(245, 245, 245, 0);
+}
+.mat-card .mat-card-image {
+  width: 11rem;
+  height: 13rem;
+  margin: 5px 8px 0px;
+}
+
+
+
+
+
+
+
