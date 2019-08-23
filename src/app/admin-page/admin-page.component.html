@@ -6,7 +6,7 @@
       <form [formGroup]="form" enctype="multipart/form-data">
         <input type="text" placeholder="title" formControlName="title">
         <input type="text" placeholder="slug" formControlName="slug">
-        <input type="file" name="single" (change)="handleFileInput($event)"  placeholder="image" >
+        <input type="file" name="single" (change)="handleFileInput($event)" placeholder="image">
         <input type="text" placeholder="description" formControlName="description">
         <!--<div class="input-group"  style="display: inline-block; width: 13%">-->
         <select class="custom-select" style="display: inline-block; width: 13%" formControlName="category">

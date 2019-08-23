@@ -8,6 +8,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FooterComponent } from './footer/footer.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { JwtModule } from "@auth0/angular-jwt";
+
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -23,6 +25,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule, MatInputModule} from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import getToken from "./helpers/token";
 
 @NgModule({
   declarations: [
@@ -39,6 +42,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken,
+        whitelistedDomains: ["localhost:3000"],
+      }
+    }),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     MatButtonModule,

@@ -6,7 +6,6 @@ import {AuthService} from "../services/auth.service";
 import {ProductsService} from "../services/products.service";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-admin-page',
@@ -56,20 +55,6 @@ export class AdminPageComponent implements OnInit {
     this.productFile = event.target.files[0];
   }
 
-  // uploadFileToActivity() {
-  //   this.productsService.postFile(this.fileToUpload).subscribe(data => {
-  //     // do something, if upload success
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
-
-  // upload() {
-  //   this.productsService.uploadImage(this.form.get('image').value).subscribe((data) => {
-  //     this.fileToUpload = data;
-  //   })
-  // }
-
   add() {
     let data;
     if (this.productFile) {
@@ -84,15 +69,14 @@ export class AdminPageComponent implements OnInit {
       data = this.form.value;
     }
 
-    this.productsService.addProduct1(data).subscribe((result) => console.log(result) );
-
-    // this.productsService.addProduct(this.form.get('title').value, this.form.get('slug').value, this.form.get('image').value, this.form.get('description').value, this.form.get('category').value).subscribe((data) => {
-    //   this.products.push(data);
-    //   this.productsService.getProducts().subscribe((data) => {
-    //     this.products = data;
-    //     this.form.reset();
-    //   });
-    // })
+    this.productsService.addProduct1(data).subscribe((result) => {
+      console.log(result);
+      this.products.push(result);
+      this.productsService.getProducts().subscribe((data) => {
+            this.products = data;
+            this.form.reset();
+          });
+    });
   }
 
 
@@ -131,9 +115,6 @@ export class AdminPageComponent implements OnInit {
     this.authService.logout();
     localStorage.clear();
   }
-
-
-
 
 
 }

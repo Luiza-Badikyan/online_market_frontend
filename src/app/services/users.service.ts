@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import * as jwtdecode from 'jwt-decode';
 
@@ -46,8 +46,10 @@ export class UsersService {
 
     const token = idToken.split(' ')[1];
     const tokenDecoded = jwtdecode(token);
-    const {email, userId, role} = tokenDecoded;
-    return {email, userId, role};
+    // const {email, userId, role} = tokenDecoded;
+    //     // return {email, userId, role};
+    const {firstName, lastName, email, userId, role, cart} = tokenDecoded;
+    return {firstName, lastName, email, userId, role, cart};
   }
 
   // loadToken() {

@@ -1,5 +1,8 @@
 .container {
   text-align: center;
+  background-color: aliceblue;
+  border-radius: 18px;
+  margin-top: 18px;
 }
 .row {
   padding: 38px;

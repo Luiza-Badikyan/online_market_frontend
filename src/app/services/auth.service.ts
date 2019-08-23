@@ -27,18 +27,6 @@ export class AuthService {
     }
 
     return true;
-    //
-    // if (data && data.roles) {
-    //   const user = this.usersService.getUser();
-    //   console.log(user);
-    //   if (!user) {
-    //     return false;
-    //   }
-    //
-    //
-    //   return this.isLoggedIn && data.roles.indexOf(user.role) > -1
-    // }
 
-    // return this.isLoggedIn;
   }
 }

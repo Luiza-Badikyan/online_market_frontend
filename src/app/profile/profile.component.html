@@ -1,15 +1,27 @@
+
+
 <div class="container">
   <div class="row">
     <div class="col">
       <button class="btn btn-info" (click)="logout()">Logout</button>
     </div>
   </div>
-</div>
-
-<div class="container">
   <div class="row">
     <div class="col">
-      <p>Profile</p>
+      <p>{{user.firstName}}</p>
+      <p>{{user.lastName}}</p>
+      <!--<p>{{user.cart}}</p>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+      <ul *ngFor="let item of user['cart']">
+        <li>{{item.product}}</li>
+        <li>{{item.quantity}}</li>
+      </ul>
     </div>
   </div>
 </div>
+
+
+
