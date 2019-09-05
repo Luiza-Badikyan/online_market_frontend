@@ -40,20 +40,4 @@ export class ProductsService {
   }
 
 
-  // uploadImage(image) {
-  //   return this.http.post('http://localhost:3000/watch/upload', image);
-  // }
-
-
-
-  // postFile(fileToUpload: File): Observable<boolean> {
-  //   const endpoint = 'your-destination-url';
-  //   const formData: FormData = new FormData();
-  //   formData.append('fileKey', fileToUpload, fileToUpload.name);
-  //   return this.http
-  //     .post(endpoint, formData,)
-  //     .map(() => { return true; })
-  //     .catch((e) => console.log(e));
-  // }
-
 }

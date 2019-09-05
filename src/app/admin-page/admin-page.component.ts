@@ -20,6 +20,7 @@ export class AdminPageComponent implements OnInit {
   products: any = [];
   categories: any = [];
   productFile: File;
+  changeFile: File;
 
   constructor(private productsService: ProductsService, private http: HttpClient, private toastr: ToastrService, private userService: UsersService, private router: Router, private authService: AuthService) { }
 
@@ -36,7 +37,7 @@ export class AdminPageComponent implements OnInit {
     this.change = new FormGroup({
       title: new FormControl('', Validators.required),
       slug: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required),
+      // image: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required)
     });
@@ -54,6 +55,7 @@ export class AdminPageComponent implements OnInit {
   handleFileInput(event) {
     this.productFile = event.target.files[0];
   }
+
 
   add() {
     let data;
@@ -81,9 +83,6 @@ export class AdminPageComponent implements OnInit {
 
 
 
-  loadProduct(product) {
-    this.change.patchValue(product);
-  }
 
   delete(product) {
     console.log(product);
@@ -96,9 +95,33 @@ export class AdminPageComponent implements OnInit {
     });
   }
 
+  loadProduct(product) {
+    this.change.patchValue(product);
+  }
+
+  handleFileInput1(event) {
+    this.changeFile = event.target.files[0];
+  }
+
+
+
+
   saveChanges(product) {
-    this.productsService.changeProduct(product._id, this.change.value).subscribe(() => {
-      this.change.reset();
+    let data;
+    if (this.changeFile) {
+      data = new FormData();
+      data.append('file', this.changeFile, this.changeFile.name);
+      Object.keys(this.change.value).forEach(key => {
+        data.append(key, this.change.value[key]);
+      });
+
+      console.log(data);
+    } else {
+      data = this.change.value;
+    }
+
+    this.productsService.changeProduct(product._id, data).subscribe(() => {
+      // this.change.reset();
       this.productsService.getProducts().subscribe((data) => {
         this.products = data;
         this.toastr.success('Your changes are successfully done.');
@@ -108,6 +131,7 @@ export class AdminPageComponent implements OnInit {
     });
 
   }
+
 
 
   logout() {

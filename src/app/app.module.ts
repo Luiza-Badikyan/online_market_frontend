@@ -13,7 +13,6 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -35,7 +34,6 @@ import getToken from "./helpers/token";
     FooterComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
   ],
   imports: [
     BrowserModule,

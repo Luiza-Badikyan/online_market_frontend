@@ -18,6 +18,9 @@ export class CartService {
   saveCart(product, quantity) {
     return this.http.post('http://localhost:3000/watch/cart', {product, quantity});
   }
+  getUserInfo() {
+    return this.http.get('http://localhost:3000/watch/cart');
+  }
 
   getCart(): CartItem[] {
     const cartJson = localStorage.getItem('cart');

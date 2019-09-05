@@ -1,27 +1,39 @@
 
+<div id="cart" *ngIf="info">
+  <div class="container">
+    <div class="row">
+      <div class="col">
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-info" (click)="logout()">Logout</button>
+        <!--<button class="btn btn-info" [routerLink]="['change', info.user._id]" ><i class = "fas fa-pencil-alt"></i></button>-->
+        <div class="dropdown">
+          <button class="btn btn-info" (click)="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class = "fas fa-pencil-alt"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" [routerLink]="['change', info.user._id]">Add Information</a>
+            <a class="dropdown-item" [routerLink]="['change-password']">Change Password</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>{{info.user.firstName}}</p>
+        <p>{{info.user.lastName}}</p>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <p>{{user.firstName}}</p>
-      <p>{{user.lastName}}</p>
-      <!--<p>{{user.cart}}</p>-->
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 offset-3">
-      <ul *ngFor="let item of user['cart']">
-        <li>{{item.product}}</li>
-        <li>{{item.quantity}}</li>
-      </ul>
-    </div>
+  <div class="container">
+      <div class="row" *ngFor="let item of info.user.cart, let i = index">
+        <div class="col"><img src="{{item.product.image}}" alt=""></div>
+        <div class="col">{{item.product.title}}</div>
+        <div class="col">{{item.product.description}}</div>
+        <div class="col">{{item.product.price}}</div>
+        <div class="col">{{item.quantity}}</div>
+        <div class="col">--- {{item.product.price * item.quantity}} ---</div>
+      </div>
   </div>
 </div>
-
 
 

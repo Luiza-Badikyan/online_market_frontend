@@ -30,4 +30,7 @@ hr {
   height: 13rem;
   margin: 5px 8px 0px;
 }
+.mat-card-actions {
+  padding: 0px;
+}
 

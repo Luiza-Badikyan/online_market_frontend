@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <form [formGroup]="form" enctype="multipart/form-data" *ngIf="info">
+        <input type="text" placeholder="firstName" class="form-control" value="{{info.user.firstName}}" formControlName="firstName">
+        <input type="text" placeholder="lastName" class="form-control" value="{{info.user.lastName}}" formControlName="lastName">
+        <input type="file" name="single" (change)="handleFileInputInfo($event)" placeholder="image">
+        <input type="date" name="bday" formControlName="date" placeholder="BDay">
+      </form>
+      <button (click)="change(info.user)">Save</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<form class="example-form">-->
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="firstName" value="Sushi">-->
+  <!--</mat-form-field>-->
+
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="lastName" value="Sushi">-->
+  <!--</mat-form-field>-->
+
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="email" value="Sushi">-->
+  <!--</mat-form-field>-->
+
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="password" value="Sushi">-->
+  <!--</mat-form-field>-->
+
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="confirmPassword" value="Sushi">-->
+  <!--</mat-form-field>-->
+<!--</form>-->

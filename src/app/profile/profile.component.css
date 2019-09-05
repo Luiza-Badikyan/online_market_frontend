@@ -5,9 +5,12 @@
   margin-top: 18px;
 }
 .row {
-  padding: 38px;
+  padding: 8px;
 }
 .col {
   background-color: aliceblue;
-  margin: 38px 3px;
+  margin: 8px 3px;
+}
+img {
+  height: 38px;
 }

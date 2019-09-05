@@ -81,10 +81,11 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form  [formGroup]="change">
+                  <form  [formGroup]="change" enctype="multipart/form-data">
                     <input type="text" style="width: 88%" formControlName="title">
                     <input type="text" style="width: 88%" formControlName="slug">
-                    <input type="text" style="width: 88%" formControlName="image">
+                    <input type="file" name="single" (change)="handleFileInput1($event)" placeholder="image">
+                    <!--<input type="text" style="width: 88%" formControlName="image">-->
                     <input type="text" style="width: 88%" formControlName="description">
                     <select class="custom-select" style="display: inline-block; width: 88%" formControlName="category">
                       <option *ngFor="let item of categories" value="{{item._id}}" selected="{{item.name}}">{{item.title}}</option>

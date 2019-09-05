@@ -28,6 +28,14 @@ export class UsersService {
     return this.http.post('http://localhost:3000/user/login', user)
   }
 
+  change(userId: string, newUser: object) {
+    return this.http.put('http://localhost:3000/user/'+userId, newUser);
+  }
+
+  updatePassword(newUser: object) {
+    return this.http.put('http://localhost:3000/user/update_password', newUser);
+  }
+
   ///////////// ??? /////////////
 
 
@@ -38,6 +46,7 @@ export class UsersService {
     const {email, userId, role} = tokenDecoded;
     this.user = {email, userId, role};
     localStorage.setItem('role', this.user.role);
+    localStorage.setItem('userId', this.user.userId);
   }
 
   getUser() {
@@ -52,14 +61,7 @@ export class UsersService {
     return {firstName, lastName, email, userId, role, cart};
   }
 
-  // loadToken() {
-  //   const token = localStorage.getItem('id_token');
-  //   this.authToken = token;
-  // }
-  //
-  // loggedIn() {
-  //   return tokenNotExpired('id_token');
-  // }
+
 
   logout(){
     this.authToken = null;

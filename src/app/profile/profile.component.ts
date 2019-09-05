@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {UsersService} from "../services/users.service";
+import {__await} from "tslib";
+import {ProductsService} from "../services/products.service";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-profile',
@@ -11,32 +14,22 @@ import {UsersService} from "../services/users.service";
 export class ProfileComponent implements OnInit {
   users;
   user;
+  products;
+  info;
 
-  constructor(private authService: AuthService, private router: Router, private usersService: UsersService) { }
+  constructor(private authService: AuthService, private router: Router, private usersService: UsersService, private cartService: CartService, private productsService: ProductsService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('role') === 'user') {
-      this.user = this.usersService.getUser();
-    }
 
-    this.usersService.getUsers().subscribe((data) => {
-      this.users = data;
-      console.log(this.users);
-    });
-
-    console.log(this.user);
-
-    // const userProfileInfo = this.users.find(item => item.userId === this.user.userId);
-    // console.log(userProfileInfo.cart);
-
-    // for (let i = 0; i < this.users.length; i++) {
-    //   if (this.users[i]._id === )
+    // if (localStorage.getItem('role') === 'user') {
+    //   this.user = this.usersService.getUser();
     // }
 
-
-    console.log(this.user.email);
-    // console.log(this.users);
-
+    this.cartService.getUserInfo().subscribe((data) => {
+      this.info = data;
+      console.log(this.info);
+      console.log(this.info.user);
+    });
 
 
   }
@@ -46,6 +39,11 @@ export class ProfileComponent implements OnInit {
     this.authService.logout();
     localStorage.clear();
   }
+
+  // addInfo() {
+  //   console.log('OK');
+  //
+  // }
 
 
 }
