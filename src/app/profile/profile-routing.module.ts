@@ -3,6 +3,7 @@ import {ProfileComponent} from "./profile.component";
 import {RouterModule, Routes} from "@angular/router";
 import {ChangeInfoComponent} from "./change-info/change-info.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {ResetPasswordComponent} from "../reset-password/reset-password.component";
 
 
 const ProfileRoutes: Routes = [

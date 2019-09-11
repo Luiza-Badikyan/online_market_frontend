@@ -132,8 +132,6 @@ export class AdminPageComponent implements OnInit {
 
   }
 
-
-
   logout() {
     this.router.navigate(['/']);
     this.authService.logout();

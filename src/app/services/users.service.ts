@@ -25,7 +25,7 @@ export class UsersService {
   }
 
   login(user) {
-    return this.http.post('http://localhost:3000/user/login', user)
+    return this.http.post('http://localhost:3000/user/login', user);
   }
 
   change(userId: string, newUser: object) {
@@ -36,7 +36,21 @@ export class UsersService {
     return this.http.put('http://localhost:3000/user/update_password', newUser);
   }
 
-  ///////////// ??? /////////////
+  // Get Reset Password Link
+  resetPassword(email) {
+    console.log('aaafsf');
+    return this.http.post('http://localhost:3000/user/reset_password_link', email);
+  }
+
+  // Check Token
+  checkToken(params) {
+    return this.http.get(`http://localhost:3000/user/reset_password/${params.email}/${params.token}`);
+  }
+
+  // Change Password after getting the reset_password_link
+  changePass(newPassword, params) {
+    return this.http.put(`http://localhost:3000/user/change_token/${params.email}/${params.token}`, newPassword);
+  }
 
 
   storeUserData(token,) {
@@ -60,8 +74,6 @@ export class UsersService {
     const {firstName, lastName, email, userId, role, cart} = tokenDecoded;
     return {firstName, lastName, email, userId, role, cart};
   }
-
-
 
   logout(){
     this.authToken = null;

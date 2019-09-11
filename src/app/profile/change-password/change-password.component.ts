@@ -15,7 +15,7 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
     this.changePassword = new FormGroup({
       password: new FormControl('', Validators.required),
-      newPassword: new FormControl('', Validators.required),
+      newPassword: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       confirmPassword: new FormControl('', Validators.required)
     });
   }
@@ -24,10 +24,17 @@ export class ChangePasswordComponent implements OnInit {
     const user_id = localStorage.getItem('userId');
     const data = this.changePassword.value;
     data.user_id = user_id;
-
     this.usersService.updatePassword(data).subscribe((response) => {
       console.log(response);
     })
   }
+
+  // resetPassword() {
+  //   const user_id = localStorage.getItem('userId');
+  //   console.log('aaaa')
+  //   this.usersService.resetPassword(user_id).subscribe((response) => {
+  //     console.log(response);
+  //   });
+  // }
 
 }

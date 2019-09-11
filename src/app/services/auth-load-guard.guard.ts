@@ -19,7 +19,9 @@ export class AuthLoadGuardGuard implements CanLoad, CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.checkAuth(route.data);
+    console.log('route', route);
+    console.log('state', state);
+    return this.checkAuth(route.data);
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {

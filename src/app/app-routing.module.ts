@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomePageComponent} from "./home-page/home-page.component";
-import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
-import {AuthGuard} from "./services/auth.guard";
+import { HomePageComponent } from "./home-page/home-page.component";
+import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
+import { AuthGuard } from "./services/auth.guard";
 import Roles from "./constants/roles";
-import {AuthLoadGuardGuard} from "./services/auth-load-guard.guard";
+import { AuthLoadGuardGuard } from "./services/auth-load-guard.guard";
 
 const adminRoles = {roles: [Roles.ADMIN.name]};
 const userRoles = {roles: [Roles.USER.name]};
 
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: 'home', component: HomePageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile', canActivate: [AuthGuard], loadChildren: './profile/profile.module#ProfileModule', data: userRoles},
@@ -21,7 +21,9 @@ const routes: Routes = [
     data: adminRoles,
     loadChildren: './admin-page/admin.module#AdminModule'
     // loadChildren: () => import(`./admin-page/admin.module`).then(m => m.AdminModule)
-  },
+},
+  {path: 'reset_password', loadChildren: './reset-password/reset-password.module#ResetPasswordModule'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: '/'}
 ];
 

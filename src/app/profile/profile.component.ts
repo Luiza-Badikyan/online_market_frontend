@@ -11,13 +11,20 @@ import {CartService} from "../services/cart.service";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
   users;
   user;
   products;
   info;
 
-  constructor(private authService: AuthService, private router: Router, private usersService: UsersService, private cartService: CartService, private productsService: ProductsService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private usersService: UsersService,
+    private cartService: CartService,
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit() {
 

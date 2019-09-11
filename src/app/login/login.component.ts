@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UsersService} from "../services/users.service";
-import {Router} from "@angular/router";
-import {AuthService} from "../services/auth.service";
-import {ToastrService} from "ngx-toastr";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UsersService } from "../services/users.service";
+import { Router } from "@angular/router";
+import { AuthService } from "../services/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -60,6 +60,18 @@ export class LoginComponent implements OnInit {
   getErrorPassword() {
     return this.loginForm.get('password').hasError('required') ? 'Field is required' : '';
   }
+
+  // forgotPassword() {
+  //   this.router.navigate(['/admin']);
+  // }
+
+  // resetPassword() {
+  //   const user_id = localStorage.getItem('userId');
+  //   console.log('aaaa')
+  //   this.usersService.resetPassword(user_id).subscribe((response) => {
+  //     console.log(response);
+  //   });
+  // }
 
 
 
