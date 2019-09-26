@@ -1,0 +1,95 @@
+
+<ngx-smart-modal #myModal identifier="myModal">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <form [formGroup]="form">
+        <input type="text" formControlName="firstName" placeholder="firstName" class="form-control">
+        <input type="text" formControlName="lastName" placeholder="lastName" class="form-control">
+        <input type="text" formControlName="email" placeholder="email" class="form-control">
+        <input type="text" formControlName="password" placeholder="password" class="form-control">
+        <select class="custom-select" style="display: block; width: 100%" formControlName="role">
+        <option value="" selected disabled>select esiminch</option>
+        <option *ngFor="let item of roles" value="{{item._id}}" selected>{{item.name}}</option>
+      </select>
+        <button class="btn btn-light" (click)="addUser()">Add User</button>
+      </form>
+    </div>
+  </div>
+
+  <button (click)="myModal.close()">Close</button>
+</ngx-smart-modal>
+
+<button (click)="ngxSmartModalService.getModal('myModal').open()">Add User</button>
+<button (click)="goToAddProduct()">Add Product</button>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1" style="text-align: center">
+      <input
+        type="text"
+        style="padding:8px;margin:15px auto;width:30%;"
+        placeholder="Type to filter the name column..."
+        (keyup)="updateFilter($event)"
+      />
+      <!--<app-esiminch></app-esiminch>-->
+      <!--[columns]="columns"-->
+      <ngx-datatable
+        #table
+        class="material"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="5"
+        [rows]="rows"
+      >
+        <ngx-datatable-column *ngFor="let item of columns" name="{{item.name}}" prop="{{item.name}}">
+          <ng-template let-value="value" let-row="index" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Actions" prop="_id">
+          <ng-template  let-value="value" let-row="index" ngx-datatable-cell-template>
+            <button (click)="loadProduct(value)" >Change</button>
+
+            <ngx-smart-modal #myModal identifier="myChangeModal{{value}}" class="modalDiv">
+              <div class="row">
+                <div class="col-10 offset-1">
+                  <form [formGroup]="change" enctype="multipart/form-data">
+                    <input type="text" placeholder="firstName" class="form-control my-3" formControlName="firstName">
+                    <input type="text" placeholder="lastName" class="form-control my-3" formControlName="lastName">
+                    <div class="custom-file my-1">
+                      <input type="file" name="single" class="custom-file-input" (change)="handleFileInput1($event)" placeholder="image">
+                      <label class="custom-file-label">Upload photo</label>
+                    </div>
+                    <input type="date" name="bday" formControlName="date" placeholder="BDay" class="form-control my-2">
+                    <select class="custom-select" style="display: block; width: 100%" formControlName="role">
+                      <option value="" selected disabled>select esiminch</option>
+                      <option *ngFor="let item of roles" value="{{item._id}}" selected>{{item.name}}</option>
+                    </select>
+                  </form>
+                  <button (click)="saveChanges(value)" (click)="myModal.close()">Save</button>
+                  {{value}}
+                </div>
+              </div>
+
+              <button (click)="myModal.close()">Close</button>
+            </ngx-smart-modal>
+
+
+
+            <button mz-button (click)="remove(value)">Remove</button>
+
+          </ng-template>
+        </ngx-datatable-column>
+
+
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
+
+

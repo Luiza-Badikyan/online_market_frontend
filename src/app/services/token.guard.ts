@@ -25,11 +25,12 @@ export class TokenGuard implements CanActivate {
 
     return new Observable(subscriber => {
       const params = next.queryParams;
-
+      console.log('email ---',params.email);
       this.usersService.checkToken(params).pipe(
-        map(res => res),
-        first()
-      ).subscribe(() => {
+        // map(res => res),
+        // first()
+      ).subscribe((res) => {
+        console.log('res-------------------', res);
         subscriber.next(true)
       }, () => {
         this.router.navigate(['/reset_password']);

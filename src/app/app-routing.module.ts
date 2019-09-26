@@ -23,6 +23,7 @@ const routes: Routes = [
     // loadChildren: () => import(`./admin-page/admin.module`).then(m => m.AdminModule)
 },
   {path: 'reset_password', loadChildren: './reset-password/reset-password.module#ResetPasswordModule'},
+  // {path: 'datatable', loadChildren: './shared-datatable/shared-datatable.module#SharedDatatableModule'},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: '/'}
 ];

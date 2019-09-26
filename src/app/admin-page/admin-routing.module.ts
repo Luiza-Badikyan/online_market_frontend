@@ -6,12 +6,17 @@ import {AuthGuard} from "../services/auth.guard";
 
 import Roles from './../constants/roles';
 import {AuthLoadGuardGuard} from "../services/auth-load-guard.guard";
+import {DatatableComponent} from "./datatable/datatable.component";
+import {UsersComponent} from "./users/users.component";
 const adminRoles = {roles: [Roles.ADMIN.name]};
 
 const AdminRoutes: Routes = [
   {path: '', canActivate: [AuthLoadGuardGuard], data: adminRoles, component: AdminPageComponent, children: [
-      {path: 'change', component: ChangeProductsComponent}
-    ]}
+      {path: 'change', component: ChangeProductsComponent},
+    ]},
+  // {path: 'users', component: DatatableComponent},
+  {path: 'users', component: UsersComponent},
+
 ];
 
 @NgModule({

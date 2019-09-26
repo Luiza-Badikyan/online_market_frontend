@@ -10,6 +10,7 @@
         <mat-error *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">
           {{ getErrorEmail() }}
         </mat-error>
+
         <!--<mat-hint>Hint</mat-hint>-->
       </mat-form-field>
     </p>
@@ -23,12 +24,11 @@
         <mat-error *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
           {{ getErrorPassword() }}
         </mat-error>
-        <!--<mat-hint>Hint</mat-hint>-->
       </mat-form-field>
     </p>
 
-    <button mat-stroked-button (click)="login()"  [disabled]="loginForm.invalid">Login</button>
-    <button class="btn btn-info" [routerLink]="['/reset_password']">Forgot Password</button>
+    <button mat-stroked-button (click)="login()" [disabled]="loginForm.invalid">Login</button>
+    <button mat-stroked-button id="resetPassword" [routerLink]="['/reset_password']">Forgot Password</button>
 
 
   </form>

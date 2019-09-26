@@ -4,6 +4,8 @@ import { UsersService } from "../services/users.service";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { ToastrService } from "ngx-toastr";
+import {IUser} from "../models/iuser";
+import {SharedServiceService} from "../services/shared-service.service";
 
 @Component({
   selector: 'app-login',
@@ -12,10 +14,29 @@ import { ToastrService } from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  users: any = [];
+  users: IUser[] = [];
   hide = true;
   flag = false;
-  constructor(private usersService: UsersService, private router: Router, private authService: AuthService, private toastr: ToastrService) { }
+  // adminFlag: boolean;
+  // userFlag: boolean;
+
+  constructor(private usersService: UsersService,
+              private router: Router,
+              private authService: AuthService,
+              private toastr: ToastrService,
+              private sharedService: SharedServiceService) {
+    // this.adminFlag = sharedService.adminFlag;
+    // this.userFlag = sharedService.userFlag;
+  }
+  // get adminFlag(): boolean {
+  //   return this.sharedService.adminFlag;
+  // }
+  // get userFlag(): boolean {
+  //   return this.sharedService.userFlag
+  // }
+  // get loginFlag(): boolean {
+  //   return this.sharedService.loginFlag;
+  // }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -23,7 +44,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required)
     });
 
-    this.usersService.getUsers().subscribe((data) => {
+    this.usersService.getUsers().subscribe((data: IUser[]) => {
       this.users = data;
     })
 
@@ -36,8 +57,12 @@ export class LoginComponent implements OnInit {
       this.authService.login();
 
       if (localStorage.getItem('role') === 'user') {
+        this.sharedService.profileVisibility();
+        this.sharedService.loginVisibility();
         this.router.navigate(['/profile']);
-      } if  (localStorage.getItem('role') === 'admin') {
+      } if (localStorage.getItem('role') === 'admin') {
+        this.sharedService.adminVisibility();
+        this.sharedService.loginVisibility();
         this.router.navigate(['/admin']);
       }
 
@@ -54,25 +79,12 @@ export class LoginComponent implements OnInit {
 
   getErrorEmail() {
     return this.loginForm.get('email').hasError('required') ? 'Field is required' :
-      this.loginForm.get('email').hasError('pattern') ? 'Not a valid email address' : '';
+      this.loginForm.get('email').hasError('email') ? 'Not a valid email address' : '';
   }
 
   getErrorPassword() {
     return this.loginForm.get('password').hasError('required') ? 'Field is required' : '';
   }
-
-  // forgotPassword() {
-  //   this.router.navigate(['/admin']);
-  // }
-
-  // resetPassword() {
-  //   const user_id = localStorage.getItem('userId');
-  //   console.log('aaaa')
-  //   this.usersService.resetPassword(user_id).subscribe((response) => {
-  //     console.log(response);
-  //   });
-  // }
-
 
 
 }

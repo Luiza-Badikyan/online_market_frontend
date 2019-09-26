@@ -1,0 +1,42 @@
+
+
+<ngx-smart-modal #myModal identifier="myModal">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <form [formGroup]="form">
+        <input type="text" formControlName="firstName" placeholder="firstName" class="form-control">
+        <input type="text" formControlName="lastName" placeholder="lastName" class="form-control">
+        <input type="text" formControlName="email" placeholder="email" class="form-control">
+        <input type="text" formControlName="password" placeholder="password" class="form-control">
+        <select class="custom-select" style="display: block; width: 100%" formControlName="role">
+          <option value="" selected disabled>role</option>
+          <option *ngFor="let item of roles" value="{{item._id}}" selected>{{item.name}}</option>
+        </select>
+        <button class="btn btn-light" (click)="myModal.close()">Cancel</button>
+        <button class="btn btn-light" (click)="addUser()">Add User</button>
+      </form>
+    </div>
+  </div>
+
+
+</ngx-smart-modal>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <button class="btn btn-light" id="icon" (click)="goToAddProduct()"><i class="fas fa-arrow-alt-circle-left"></i></button>
+    </div>
+    <div class="col-11">
+      <button class="btn btn-light" (click)="ngxSmartModalService.getModal('myModal').open()">Add User</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<app-shared-datatable *ngIf="rows" [users]="rows" [roles]="roles"></app-shared-datatable>
+
+

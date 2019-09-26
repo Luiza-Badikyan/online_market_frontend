@@ -1,0 +1,68 @@
+
+
+<div class="container" *ngIf="users && roles">
+  <div class="row">
+    <div class="col-10 offset-1" style="text-align: center">
+      <input
+        type="text"
+        style="padding:8px;margin:15px auto;width:30%;"
+        placeholder="Type to filter the name column..."
+        (keyup)="updateFilter($event)"
+      />
+      <ngx-datatable
+        #table
+        class="material"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="limit"
+        [rows]="rows"
+        (page)="setPage($event)"
+        [externalPaging]="false"
+      >
+        <ngx-datatable-column *ngFor="let item of columns" name="{{item.name}}" prop="{{item.name}}">
+          <ng-template let-value="value" let-row="index" ngx-datatable-cell-template>
+            {{item.name === 'role' ? getRoles(value) : value}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Actions" prop="_id">
+          <ng-template  let-value="value" let-row="index" ngx-datatable-cell-template>
+            <button (click)="load(value)"><i class="fas fa-pencil-alt"></i></button>
+
+            <ngx-smart-modal #myModal identifier="myChangeModal{{value}}" class="modalDiv">
+              <div class="row">
+                <div class="col-10 offset-1">
+                  <form [formGroup]="change" enctype="multipart/form-data">
+                    <input type="text" placeholder="firstName" class="form-control my-3" formControlName="firstName">
+                    <input type="text" placeholder="lastName" class="form-control my-3" formControlName="lastName">
+                    <div class="custom-file my-1">
+                      <input type="file" name="single" class="custom-file-input" (change)="handleFileInput1($event)" placeholder="image">
+                      <label class="custom-file-label">Upload photo</label>
+                    </div>
+                    <input type="date" name="bday" formControlName="date" placeholder="BDay" class="form-control my-2">
+                    <select class="custom-select" style="display: block; width: 100%" formControlName="role">
+                      <option value="" selected disabled>select esiminch</option>
+                      <option *ngFor="let item of roles" value="{{item._id}}" selected>{{item.name}}</option>
+                    </select>
+                  </form>
+                  <button (click)="saveChanges(value)" (click)="myModal.close()">Save</button>
+                </div>
+              </div>
+
+              <button (click)="myModal.close()">Close</button>
+            </ngx-smart-modal>
+
+            <button mz-button (click)="remove(value)"><i class="fas fa-trash-alt"></i></button>
+
+          </ng-template>
+        </ngx-datatable-column>
+
+
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
+
+

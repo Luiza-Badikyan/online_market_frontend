@@ -12,9 +12,18 @@ mat-form-field {
   width: 58%;
 }
 button {
-  margin-bottom: 33px;
+  margin: 3px 8px 33px 8px;
   background-color: rgba(161, 108, 114, 0.96);
   color: #fff4e6;
-  border: 2px solid #fff4e6;
+  border: 2px solid rgb(122, 82, 88);
+  font-weight: 800;
+}
+#resetPassword {
+  background-color: rgba(145,161,146,0.96);
+  color: rgba(161, 108, 114, 0.96);
+  border: 2px solid rgba(161, 108, 114, 0.96);
+}
+#resetPassword:hover {
+  background-color: rgba(124, 149, 172, 0.67);
 }
 

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from "../services/products.service";
-import {Router} from "@angular/router";
-import {UsersService} from "../services/users.service";
-import {CartService} from "../services/cart.service";
+import { ProductsService } from "../services/products.service";
+import { Router } from "@angular/router";
+import { UsersService } from "../services/users.service";
+import { CartService } from "../services/cart.service";
+import { IProduct } from "../models/iproduct";
+import {IUser} from "../models/iuser";
 
 @Component({
   selector: 'app-home-page',
@@ -10,17 +12,20 @@ import {CartService} from "../services/cart.service";
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  products: any = [];
-  users;
-  // cart: any = [];
+  products: IProduct[] = [];
+  users: IUser[] = [];
 
-  constructor(private productsService: ProductsService, private router: Router, private usersService: UsersService, private cartService: CartService) { }
+  constructor(private productsService: ProductsService,
+              private router: Router,
+              private usersService: UsersService,
+              private cartService: CartService) { }
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe((data) => {
+    this.productsService.getProducts().subscribe((data: IProduct[]) => {
       this.products = data;
-    })
-    this.usersService.getUsers().subscribe((data) => {
+    });
+    this.usersService.getUsers().subscribe((data: IUser[]) => {
+      console.log('users ----------', this.users);
       this.users = data;
     });
   }
@@ -31,9 +36,6 @@ export class HomePageComponent implements OnInit {
     const user = this.usersService.getUser();
 
     let existingProduct = cart.find(item => item.product === product._id);
-    // console.log(product._id);
-    // console.log(existingProduct);
-    // console.log(cart);
 
     if (!user) {
       if (!existingProduct) {
@@ -50,18 +52,7 @@ export class HomePageComponent implements OnInit {
           user.cart = [];
           user.cart.push(data);
           console.log(user.cart);
-
-          // user.cart.push(data);
-          // localStorage.setItem('cart', user.cart);
-
-          // user = this.usersService.getUser();
-          // console.log(product._id);
-          // console.log(quantity);
-          // console.log(data);
-          // console.log(user);
-
         }
-
         // TODO: get returned cart from user
         // TODO: convert to json
         // TODO: save cart in localStorage

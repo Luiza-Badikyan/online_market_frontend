@@ -24,8 +24,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import getToken from "./helpers/token";
 import { ResetPasswordModule } from "./reset-password/reset-password.module";
+import { SharedDatatableModule } from "./shared-datatable/shared-datatable.module";
+
+import getToken from "./helpers/token";
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { ResetPasswordModule } from "./reset-password/reset-password.module";
     MatInputModule,
     MatIconModule,
     FlexLayoutModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SharedDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

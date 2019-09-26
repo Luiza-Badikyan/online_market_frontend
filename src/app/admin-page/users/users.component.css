@@ -1,0 +1,29 @@
+.btn {
+  font-size: 18px;
+  color: #3b5b5a;
+  width: 100%;
+  margin: 0px;
+  border-radius: 0px;
+  border: none;
+}
+.container-fluid {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+.col-1, .col-11 {
+  padding: 0px;
+}
+#icon {
+  background-color: rgba(193, 193, 193, 0.68);
+}
+#icon:hover {
+  background-color: rgba(171, 186, 173, 0.71);
+}
+ngx-smart-modal {
+  text-align: center;
+}
+ngx-smart-modal button {
+  width: 50%;
+}
+

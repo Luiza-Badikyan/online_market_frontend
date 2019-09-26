@@ -1,39 +1,38 @@
 
-<div id="cart" *ngIf="info">
+<div id="cart" *ngIf="user">
   <div class="container">
-    <div class="row">
-      <div class="col">
-
-        <!--<button class="btn btn-info" [routerLink]="['change', info.user._id]" ><i class = "fas fa-pencil-alt"></i></button>-->
+    <div class="row" style="background-color: rgba(77, 102, 83, 0.7); color: whitesmoke; border-bottom: 3px solid #31393b">
+      <div class="col-4">
+        <img src="{{user.image}}" alt="" id="userPhoto">
+      </div>
+      <div class="col-6">
+        <p id="name">{{user.firstName}} {{user.lastName}}</p>
+        <p>{{user.date}}</p>
+      </div>
+      <div class="col-2" style="text-align: right">
         <div class="dropdown">
           <button class="btn btn-info" (click)="logout()"><i class="fas fa-sign-out-alt"></i></button>
           <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class = "fas fa-pencil-alt"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" [routerLink]="['change', info.user._id]">Add Information</a>
+            <a class="dropdown-item" [routerLink]="['change', user._id]">Add Information</a>
             <a class="dropdown-item" [routerLink]="['change-password']">Change Password</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <p>{{info.user.firstName}}</p>
-        <p>{{info.user.lastName}}</p>
-      </div>
+    <div class="row" *ngFor="let item of user.cart, let i = index">
+      <div class="col"><img src="{{item.product.image}}" alt=""></div>
+      <div class="col">{{item.product.title}}</div>
+      <div class="col">{{item.product.description}}</div>
+      <div class="col">{{item.product.price}}</div>
+      <div class="col">{{item.quantity}}</div>
+      <div class="col">--- {{item.product.price * item.quantity}} ---</div>
     </div>
   </div>
-  <div class="container">
-      <div class="row" *ngFor="let item of info.user.cart, let i = index">
-        <div class="col"><img src="{{item.product.image}}" alt=""></div>
-        <div class="col">{{item.product.title}}</div>
-        <div class="col">{{item.product.description}}</div>
-        <div class="col">{{item.product.price}}</div>
-        <div class="col">{{item.quantity}}</div>
-        <div class="col">--- {{item.product.price * item.quantity}} ---</div>
-      </div>
-  </div>
 </div>
+
+
 
 

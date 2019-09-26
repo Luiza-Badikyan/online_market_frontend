@@ -1,16 +1,4 @@
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!--<div class="col-6 offset-3">-->
-      <!--<form [formGroup]="registerForm">-->
-        <!--<input type="text" formControlName="firstName" placeholder="firstName" class="form-control">-->
-        <!--<input type="text" formControlName="lastName" placeholder="lastName" class="form-control">-->
-        <!--<input type="text" formControlName="email" placeholder="email" class="form-control">-->
-        <!--<input type="text" formControlName="password" placeholder="password" class="form-control">-->
-        <!--<button class="btn btn-info" (click)="registration()">Register</button>-->
-      <!--</form>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+
 
 <div>
   <form [formGroup]="registerForm">
@@ -20,18 +8,27 @@
         <mat-label>Enter your first name</mat-label>
         <input matInput placeholder="firstName" formControlName="firstName">
         <mat-icon matSuffix><i class="fas fa-user"></i></mat-icon>
+        <mat-error *ngIf="!registerForm.controls['firstName'].valid && registerForm.controls['firstName'].touched">
+          {{ getValidationFirstNameError() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard">
         <mat-label>Enter your last name</mat-label>
         <input matInput placeholder="lastName" formControlName="lastName">
         <mat-icon matSuffix><i class="fas fa-user"></i></mat-icon>
+        <mat-error *ngIf="!registerForm.controls['lastName'].valid && registerForm.controls['lastName'].touched">
+          {{ getValidationLastNameError() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard">
         <mat-label>Enter your email</mat-label>
         <input matInput placeholder="email" formControlName="email">
         <mat-icon matSuffix><i class="fas fa-envelope"></i></mat-icon>
+        <mat-error *ngIf="!registerForm.controls['email'].valid && registerForm.controls['email'].touched">
+          {{ getErrorEmail() }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard">
@@ -40,6 +37,9 @@
         <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" style="text-decoration: none; color: rgba(4,88,93,0.73); font-size: 15px">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </a>
+        <mat-error *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">
+          {{ getErrorPassword() }}
+        </mat-error>
       </mat-form-field>
     <br>
     <button mat-stroked-button (click)="registration()" [disabled]="registerForm.invalid">Register</button>

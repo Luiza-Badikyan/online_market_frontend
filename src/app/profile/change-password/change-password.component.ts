@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UsersService} from "../../services/users.service";
-import {ActivatedRoute} from "@angular/router";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UsersService } from "../../services/users.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-change-password',
@@ -10,7 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ChangePasswordComponent implements OnInit {
   changePassword: FormGroup;
-  constructor(private usersService: UsersService, private route: ActivatedRoute,) { }
+  constructor(private usersService: UsersService,
+              private router: Router) { }
 
   ngOnInit() {
     this.changePassword = new FormGroup({
@@ -26,15 +27,31 @@ export class ChangePasswordComponent implements OnInit {
     data.user_id = user_id;
     this.usersService.updatePassword(data).subscribe((response) => {
       console.log(response);
+      this.router.navigate(['/profile']);
     })
   }
 
-  // resetPassword() {
-  //   const user_id = localStorage.getItem('userId');
-  //   console.log('aaaa')
-  //   this.usersService.resetPassword(user_id).subscribe((response) => {
-  //     console.log(response);
-  //   });
-  // }
+  getErrorPassword() {
+    return this.changePassword.get('password').hasError('required') ? 'Field is required' : '';
+  }
+  getColorPass() {
+    if (this.changePassword.get('password').invalid && this.changePassword.get('password').touched) return true;
+  }
+
+  getErrorNewPassword() {
+    return this.changePassword.get('newPassword').hasError('required') ? 'Field is required' : '';
+  }
+  getColorNewPass() {
+    if (this.changePassword.get('newPassword').invalid && this.changePassword.get('newPassword').touched) return true;
+  }
+
+  getErrorConfirmPassword() {
+    // return this.changePassword.get('confirmPassword').hasError('required') ? 'Field is required' : '';
+    return this.changePassword.get('confirmPassword').hasError('required') ? 'Field is required' :
+      this.changePassword.get('newPassword').value !== this.changePassword.get('confirmPassword').value ? 'Your newPassword & confirmPassword are not equal' : '';
+  }
+  getColorConfirmPass() {
+    if ((this.changePassword.get('confirmPassword').invalid || this.changePassword.get('newPassword').value !== this.changePassword.get('confirmPassword').value) && this.changePassword.get('confirmPassword').touched) return true;
+  }
 
 }

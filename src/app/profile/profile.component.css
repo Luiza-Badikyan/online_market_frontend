@@ -4,6 +4,15 @@
   border-radius: 18px;
   margin-top: 18px;
 }
+#userPhoto {
+  width: 28%;
+  height: 88%;
+  padding: 28px auto 3px;
+}
+#name {
+  font-size: 28px;
+  margin-top: 13px;
+}
 .row {
   padding: 8px;
 }
@@ -13,4 +22,12 @@
 }
 img {
   height: 38px;
+}
+button {
+  background-color: transparent;
+  border: none;
+}
+button:hover {
+  background-color: transparent;
+  color: #520000;
 }

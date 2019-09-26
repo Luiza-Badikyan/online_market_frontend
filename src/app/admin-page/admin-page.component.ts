@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {UsersService} from "../services/users.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {ProductsService} from "../services/products.service";
-import {ToastrService} from "ngx-toastr";
-import {HttpClient} from "@angular/common/http";
+import { Router } from "@angular/router";
+import { UsersService } from "../services/users.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../services/auth.service";
+import { ProductsService } from "../services/products.service";
+import { ToastrService } from "ngx-toastr";
+import { HttpClient } from "@angular/common/http";
+import { IProduct } from "../models/iproduct";
+import { ICategory } from "../models/icategory";
+import { SharedServiceService } from "../services/shared-service.service";
 
 @Component({
   selector: 'app-admin-page',
@@ -13,24 +16,42 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-
-
   form: FormGroup;
   change: FormGroup;
-  products: any = [];
-  categories: any = [];
+  products: IProduct[] = [];
+  categories: Array<ICategory> = [];
   productFile: File;
   changeFile: File;
+  rows;
 
-  constructor(private productsService: ProductsService, private http: HttpClient, private toastr: ToastrService, private userService: UsersService, private router: Router, private authService: AuthService) { }
+
+  title = 'Angular Concepts Tutorials - Input & Output';
+  appleDescription = ['kjj', 'hjh', 'kkj', 'fdg', 'dfd'];
+
+
+  constructor(private productsService: ProductsService,
+              private http: HttpClient,
+              private toastr: ToastrService,
+              private userService: UsersService,
+              private router: Router,
+              private authService: AuthService,
+              private sharedService: SharedServiceService) { }
+
+
+  get adminFlag(): boolean {
+    return this.sharedService.adminFlag;
+  }
+  get loginFlag(): boolean {
+    return this.sharedService.loginFlag;
+  }
 
   ngOnInit() {
-
     this.form = new FormGroup({
       title: new FormControl('', Validators.required),
       slug: new FormControl('', Validators.required),
       // image: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required)
     });
 
@@ -39,18 +60,23 @@ export class AdminPageComponent implements OnInit {
       slug: new FormControl('', Validators.required),
       // image: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required)
     });
 
-    this.productsService.getProducts().subscribe((data) => {
+    this.productsService.getProducts().subscribe((data: IProduct[]) => {
       this.products = data;
     });
 
-    this.productsService.getCategories().subscribe((data) => {
+    this.productsService.getCategories().subscribe((data: ICategory[]) => {
+      console.log('iuiuhiuhiu', data);
       this.categories = data;
     });
 
   }
+
+
+
 
   handleFileInput(event) {
     this.productFile = event.target.files[0];
@@ -71,10 +97,10 @@ export class AdminPageComponent implements OnInit {
       data = this.form.value;
     }
 
-    this.productsService.addProduct1(data).subscribe((result) => {
+    this.productsService.addProduct1(data).subscribe((result: any) => {
       console.log(result);
       this.products.push(result);
-      this.productsService.getProducts().subscribe((data) => {
+      this.productsService.getProducts().subscribe((data: IProduct[]) => {
             this.products = data;
             this.form.reset();
           });
@@ -105,24 +131,21 @@ export class AdminPageComponent implements OnInit {
 
 
 
-
   saveChanges(product) {
     let data;
     if (this.changeFile) {
       data = new FormData();
       data.append('file', this.changeFile, this.changeFile.name);
       Object.keys(this.change.value).forEach(key => {
-        data.append(key, this.change.value[key]);
-      });
-
-      console.log(data);
+              data.append(key, this.change.value[key]);
+            });
     } else {
       data = this.change.value;
     }
 
     this.productsService.changeProduct(product._id, data).subscribe(() => {
       // this.change.reset();
-      this.productsService.getProducts().subscribe((data) => {
+      this.productsService.getProducts().subscribe((data: IProduct[]) => {
         this.products = data;
         this.toastr.success('Your changes are successfully done.');
       });
@@ -133,6 +156,8 @@ export class AdminPageComponent implements OnInit {
   }
 
   logout() {
+    this.sharedService.adminVisibility();
+    this.sharedService.loginVisibility();
     this.router.navigate(['/']);
     this.authService.logout();
     localStorage.clear();

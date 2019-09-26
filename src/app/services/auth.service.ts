@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {UsersService} from "./users.service";
-import {Data} from "@angular/router";
+import {Data, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import {Data} from "@angular/router";
 export class AuthService {
   isLoggedIn: boolean;
   users: any;
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private router: Router) { }
 
   login() {
     this.isLoggedIn = true;
@@ -19,6 +19,7 @@ export class AuthService {
   isAuth(data: Data): boolean {
     const user = this.usersService.getUser();
     if (!user) {
+      this.router.navigate(['/login']);
       return false;
     }
 

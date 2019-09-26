@@ -1,31 +1,44 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 import * as jwtdecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  constructor(private http: HttpClient, private router: Router) { }
   authToken;
   user: any;
+  constructor(private http: HttpClient) { }
+
   getUsers() {
-    return this.http.get('http://localhost:3000/user');
+    return this.http.get(`http://localhost:3000/user`);
   }
-  register(newFirstName, newLastName, newEmail, newPassword) {
+
+  getUsersByPagination(page, limit) {
+    return this.http.get(`http://localhost:3000/user/pagination?page=${page}&limit=${limit}`);
+  }
+
+  register(newFirstName, newLastName, newEmail, newPassword, newRole?: string) {
     const user = {
       firstName: newFirstName,
       lastName: newLastName,
       email: newEmail,
-      password: newPassword
+      password: newPassword,
+      role: newRole
     };
     return this.http.post('http://localhost:3000/user/register', user);
   }
 
   login(user) {
     return this.http.post('http://localhost:3000/user/login', user);
+  }
+
+  getRoles() {
+    return this.http.get('http://localhost:3000/user/roles');
+  }
+
+  deleteUser(userId) {
+    return this.http.delete(`http://localhost:3000/user/${userId}`)
   }
 
   change(userId: string, newUser: object) {
@@ -70,7 +83,7 @@ export class UsersService {
     const token = idToken.split(' ')[1];
     const tokenDecoded = jwtdecode(token);
     // const {email, userId, role} = tokenDecoded;
-    //     // return {email, userId, role};
+    // return {email, userId, role};
     const {firstName, lastName, email, userId, role, cart} = tokenDecoded;
     return {firstName, lastName, email, userId, role, cart};
   }

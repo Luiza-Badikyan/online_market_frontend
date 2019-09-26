@@ -1,13 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 offset-3">
-      <form [formGroup]="form" enctype="multipart/form-data" *ngIf="info">
-        <input type="text" placeholder="firstName" class="form-control" value="{{info.user.firstName}}" formControlName="firstName">
-        <input type="text" placeholder="lastName" class="form-control" value="{{info.user.lastName}}" formControlName="lastName">
-        <input type="file" name="single" (change)="handleFileInputInfo($event)" placeholder="image">
-        <input type="date" name="bday" formControlName="date" placeholder="BDay">
+    <div class="col-6 offset-3 shadow p-3 mb-5 bg-white rounded">
+      <form [formGroup]="form" enctype="multipart/form-data" *ngIf="user">
+        <input type="text" placeholder="firstName" class="form-control my-3" formControlName="firstName">
+        <input type="text" placeholder="lastName" class="form-control my-3" formControlName="lastName">
+        <div class="custom-file my-1">
+          <input type="file" name="single" class="custom-file-input" (change)="handleFileInputInfo($event)" placeholder="image">
+          <label class="custom-file-label">Upload photo</label>
+        </div>
+        <input type="date" name="bday" formControlName="date" placeholder="BDay" class="form-control my-2">
       </form>
-      <button (click)="change(info.user)">Save</button>
+      <button class="btn btn-light" (click)="change(user)">Save</button>
     </div>
   </div>
 </div>
